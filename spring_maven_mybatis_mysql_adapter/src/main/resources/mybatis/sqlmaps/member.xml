@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.justux.guava.member">
+
+
+<select id="getMemberLogin" resultType="kr.justux.guava.model.Member">
+     select * from 
+     gn_member 
+     where 
+     member_id='${id}'
+</select>    
+
+<select id="getMemberMe" resultType="kr.justux.guava.model.Member">
+     select * from 
+     gn_member 
+     where 
+     member_id='${id}'
+</select>    
+    
+
+<insert id="setMember" >
+    INSERT INTO guava.gn_member(
+	   member_id
+	  ,member_password
+	  ,member_group
+	  ,member_name
+	  ,member_birth
+	  ,member_point
+	  ,member_phone
+	  ,member_picture
+	  ,member_agree
+	  ,member_recommender
+	  ,member_last_login
+	  ,created_at
+	  ,updated_at
+	  ,join_type
+	) VALUES (
+	   '${member_id}' -- member_id - IN varchar(50)
+	  ,'${member_password}' -- member_password - IN varchar(64)
+	  ,0   -- member_group - IN int(11) unsigned
+	  ,'${member_name}' -- member_name - IN varchar(20)
+	  ,'${member_birth}'  -- member_birth - IN char(8)
+	  ,'${member_point}' -- member_point - IN int(11)
+	  ,'${member_phone}'  -- member_phone - IN varchar(20)
+	  ,'${member_picture}'  -- member_picture - IN varchar(100)
+	  ,0   -- member_agree - IN int(11)
+	  ,'${member_recommender}'  -- member_recommender - IN varchar(20)
+	  ,'${member_last_login}'  -- member_last_login - IN datetime
+	  ,sysdate  -- created_at - IN datetime
+	  ,sysdate  -- updated_at - IN datetime
+	  ,'${join_type}'  -- join_type - IN char(1)
+	)
+     
+     
+</insert>    
+    
+</mapper>

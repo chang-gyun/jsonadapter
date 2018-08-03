@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.myapp.book">
+
+<select id="getBookList" resultType="kr.justux.guava.model.Book">
+      SELECT
+          id,
+          name,
+          writer,
+          price,
+          genre,
+          publisher,
+          cnt
+      FROM
+          BOOKS
+		WHERE (id=#{id} OR #{id}="") 
+</select>
+    
+<insert  id="setBook">
+     INSERT INTO BOOKS(
+	  ID,
+	  NAME,
+	  WRITER,
+	  PRICE,
+	  GENRE,
+	  PUBLISHER
+	) VALUES (
+	   #{id},
+	   #{name},
+	   #{writer},
+	   #{price},
+	   #{genre},
+	   #{publisher}
+	)
+	 ON DUPLICATE KEY UPDATE
+	 CNT = CNT+1, NAME = #{name};
+</insert>    
+
+</mapper>
